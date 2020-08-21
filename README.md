@@ -8,21 +8,22 @@ A library that converts HTML to PDF using Headless Chrome ([puppeteer](https://g
 
 ### Installation
 
-`npm install --save @mbrandau/htmlpdf`
+`npm install --save @aalonzolu/htmlpdf`
 
 ### Usage
 
 The following example creates a PDF file of the index.html file.
 ```js
 const fs = require('fs');
-const htmlPdf = require('@mbrandau/htmlpdf');
+const htmlPdf = require('@aalonzolu/htmlpdf');
 
 (async () => {
   const options = {
     format: 'Letter'
   };
+  const pupteerOptions = {}
 
-  const pdfBuffer = await htmlPdf(fs.readFileSync('index.html'), options);
+  const pdfBuffer = await htmlPdf(fs.readFileSync('index.html'), options,pupteerOptions);
   fs.writeFileSync('index.pdf', pdfBuffer); // Write PDF file
 })();
 ```
