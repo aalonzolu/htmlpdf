@@ -4,10 +4,13 @@ const http = require('http'),
   puppeteer = require('puppeteer');
 
 const defaultOptions = {
-  format: 'A4'
+  format: 'Letter'
 };
 
-async function htmlToPdf(html, options) {
+async function htmlToPdf(html, options,puppeteerOptions) {
+  if(!puppeteerOptions){
+    puppeteerOptions = {}
+  }
   // Generate an authorization token
   // Authorization is used to protect the HTML code from getting read by others, while the server is running.
   const token = crypto.randomBytes(256).toString('hex');
@@ -35,7 +38,7 @@ async function htmlToPdf(html, options) {
   const address = server.address();
   const url = `http://localhost:${address.port}`;
 
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch(puppeteerOptions);
   const page = await browser.newPage();
 
   // Set authorization token header for new requests
