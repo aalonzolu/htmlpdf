@@ -46,7 +46,7 @@ async function htmlToPdf(html, options,puppeteerOptions) {
 
   // Navigate to the running HTTP server
   await page.goto(url, {
-    waitUntil: 'networkidle'
+    waitUntil: 'networkidle2'
   });
   // Get the PDF buffer of the current page with the given options
   const pdfBuffer = await page.pdf(defaults(options, defaultOptions));
